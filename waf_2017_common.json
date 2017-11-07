@@ -1,0 +1,49 @@
+{
+    "name":"Web Common Attack",
+    "description":"Web常用攻击：SQL注入和XSS攻击",
+    "level":2,
+    "status":"on",
+    "author":"hamdell",
+    "actions":[
+        {
+            "id":20170001,
+            "msg":"SQL Comment Sequence",
+            "pattern":"(/\\*!?|\\*/|[';]--|--[\\s\\r\\n\\v\\f]|(?:--[^-]*?-)|([^\\-&])#.*?[\\s\\r\\n\\v\\f]|;?\\\\x00)"
+        },
+        {
+            "id":20170002,
+            "msg":"SQL Injection detected",
+            "pattern":"'|(and|or)\\b.+?(>|<|=|\\bin|\\blike)|\\/\\*.+?\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)|(\\.\\.\\/)+|^\\/?[a-zA-Z]+(\\/[a-zA-Z]+)+$"
+        },
+        {
+            "id":20170003,
+            "msg":"SQL String Termination",
+            "pattern":"(^[\\\"'`´’‘;]+|[\\\"'`´’‘;]+$)"
+        },
+        {
+            "id":20170004,
+            "msg":"SQL Injection payload",
+            "pattern":"(?:(sleep\\((\\s*?)(\\d*?)(\\s*?)\\)|benchmark\\((.*?)\\,(.*?)\\)))"
+        },
+        {
+            "id":20170005,
+            "msg":"XSS (Cross-Site Scripting) - IE Filter",
+            "pattern":"(?:<script.*?[ /+\\t]*?((src)|(xlink:href)|(href))[ /+\\t]*=)"
+        },
+        {
+            "id":20170006,
+            "msg":"XSS (Cross-Site Scripting) - JS Fragments",
+            "pattern":"(fromcharcode|alert|eval)\\s*\\("
+        },
+        {
+            "id":20170007,
+            "msg":"XSS (Cross-Site Scripting) - xss testing alert",
+            "pattern":"[/'\\\"<]xss[/'\\\">]"
+        },
+        {
+            "id":20170008,
+            "msg":"XSS (Cross-Site Scripting) - IE Filter",
+            "pattern":"(?:<[i]?frame.*?[ /+\\t]*?src[ /+\\t]*=)"
+        }
+    ]
+}
